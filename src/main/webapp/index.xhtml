@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html">
+        <!--This is the old bootstrap method-->
+        <!--<ui:include src="bootstrap.output['program-location']}" /> program management-->
+        <!--<ui:include src="bootstrap.output['user-module-login-block']}" />user management-->
+        <!--<ui:include src="bootstrap.output['error-module-block']}" />error management-->
+        
+        <!--This is the new bootstrap method [2014.11.16]-->
+        <ui:include src="#{Bootstrap.viewRoot}" />
+    </f:view>
+</html>
