@@ -25,6 +25,7 @@ public class SegURLResolverTest {
         {
             "", //programName
             //All these URL should map to above programName
+            null,
             "",
             "/a.bc",
             "ab.c/"
@@ -46,7 +47,8 @@ public class SegURLResolverTest {
     String[] fileURLPool = {
         "/faces.file/something/something.f",
         "/faces.file/som/e.th/ing/something.file",
-        "faces.file/som/e.th/ing/something.file/"
+        "faces.file/som/e.th/ing/something.file/",
+        "/javax.faces.resource/jsf.js"
     };
 
     public SegURLResolverTest() {

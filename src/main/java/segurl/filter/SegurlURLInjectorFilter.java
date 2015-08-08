@@ -6,8 +6,6 @@
 package segurl.filter;
 
 import java.io.IOException;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,7 +13,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -55,13 +52,22 @@ public class SegurlURLInjectorFilter implements Filter {
         //String viewId = ec.getInitParameter("viewId");
         
         String pathInfo = request.getPathInfo();
-        String[] pathInfoComp = pathInfo.split("/");
+        String servletPath = request.getServletPath();
+        String contextPath = request.getContextPath();
+        /*String[] pathInfoComp = pathInfo.split("/");
         
         //Get the last element
         String object = (pathInfoComp.length > 0) ? pathInfoComp[pathInfoComp.length-1] : "";
         if(!object.contains(".")){
             // This is not a request for a file resource
             urlContainer.setProgramName(object);
+            req.getRequestDispatcher(viewId).forward(req, resp);
+            return;
+        }*/
+        if(//pathInfo != null &&
+                !SegURLResolver.containsFile(pathInfo)){
+            String programName = SegURLResolver.resolveProgramName(pathInfo);
+            urlContainer.setProgramName(programName);
             req.getRequestDispatcher(viewId).forward(req, resp);
             return;
         }

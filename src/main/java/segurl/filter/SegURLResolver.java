@@ -22,7 +22,10 @@ public class SegURLResolver {
         return (!containsFile(programName)) ? programName : "";
     }
     
-    public static String[] splitAndCleanPathInfo(String pathInfo){
+    private static String[] splitAndCleanPathInfo(String pathInfo){
+        //If pathInfo is null, just return an empty String array
+        if(pathInfo == null) return new String[]{};
+        
         String[] allComp = pathInfo.split(PATH_DELIMITER);
         String[] finalAllComp = new String[allComp.length];
         for(int i=0; i<allComp.length; i++){
