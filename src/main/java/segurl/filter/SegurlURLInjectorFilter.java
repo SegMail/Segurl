@@ -65,8 +65,8 @@ public class SegurlURLInjectorFilter implements Filter {
             return;
         }*/
         if(//pathInfo != null &&
-                !SegURLResolver.containsFile(pathInfo)){
-            String programName = SegURLResolver.resolveProgramName(pathInfo);
+                !SegURLResolver.getResolver().containsFile(pathInfo)){
+            String programName = SegURLResolver.getResolver().resolveProgramName(pathInfo);
             urlContainer.setProgramName(programName);
             req.getRequestDispatcher(viewId).forward(req, resp);
             return;
